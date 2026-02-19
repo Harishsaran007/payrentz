@@ -26,10 +26,10 @@ import {
 const Navbar = () => {
   return (
     <div className='w-full mx-auto'>
-      <div className="hidden md:block">
+      <div className="hidden xl:block">
         <div className='flex justify-between py-[13px] h-[59px] pr-[60px] '>
           <div className='flex items-center pl-[60px]'>
-            <div className="block xl:hidden mr-4">
+            {/* <div className="block xl:hidden mr-4">
               <Sheet>
                 <SheetTrigger asChild>
                   <Button variant="ghost" size="icon" className="p-0 hover:bg-transparent">
@@ -116,7 +116,7 @@ const Navbar = () => {
                     </div>
 
                     <div className="flex flex-col gap-4">
-                      <a href='' className='flex items-center font-semibold h-[16px] gap-2'>
+                      <a href='/appliances' className='flex items-center font-semibold h-[16px] gap-2'>
                         <img src='washingmachine.png' className='w-[20px] h-[20px]' />
                         <p className="text-lg">Appliances</p>
                       </a>
@@ -132,7 +132,7 @@ const Navbar = () => {
                   </div>
                 </SheetContent>
               </Sheet>
-            </div>
+            </div> */}
             <img className="max-w-[132px] " src="payrentz-logo.5c7f17d4.svg" alt="logo" />
             <Dialog>
               <DialogTrigger className='flex flex-row ml-[20px]' ><img src='location.8b71f906.svg' /><div className='text-xs font-semibold text-[13px] pl-2'><p className='text-gray-800'>Chennai</p><p className='text-gray-400'>600001</p></div></DialogTrigger>
@@ -196,7 +196,7 @@ const Navbar = () => {
               </DialogContent>
             </Dialog>
             <div className="hidden xl:flex items-center">
-              <a href='' className='flex items-center font-semibold pl-[30px] h-[16px] '><img src='washingmachine.png' className='w-[17px] h-[17px]  mr-[5px]' /><p>Appliances</p></a>
+              <a href='/appliances' className='flex items-center font-semibold pl-[30px] h-[16px] '><img src='washingmachine.png' className='w-[17px] h-[17px]  mr-[5px]' /><p>Appliances</p></a>
               <a href='' className='flex items-center font-semibold pl-[30px] h-[16px] '><img src='sofa.png' className='w-[17px] h-[17px]  mr-[5px]' /><p>Furniture</p></a>
               <a href='' className='flex items-center font-semibold pl-[30px] h-[16px] '><img src='home-appliances.png' className='w-[17px] h-[17px]  mr-[5px]' /><p>Packages</p></a>
             </div>
@@ -223,7 +223,7 @@ const Navbar = () => {
       </div>
 
 
-      <div className="md:hidden block bg-white">
+      <div className="xl:hidden block bg-white">
         <div className="flex justify-between items-center p-4">
           <div className="flex items-center gap-4">
             <Sheet>
@@ -312,7 +312,7 @@ const Navbar = () => {
                   </div>
 
                   <div className="flex flex-col gap-4">
-                    <a href='' className='flex items-center font-semibold h-[16px] gap-2'>
+                    <a href='/appliances' className='flex items-center font-semibold h-[16px] gap-2'>
                       <img src='washingmachine.png' className='w-[20px] h-[20px]' />
                       <p className="text-lg">Appliances</p>
                     </a>

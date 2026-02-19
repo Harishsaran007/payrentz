@@ -129,7 +129,7 @@ const Homecontent = () => {
                         className="relative z-20 aspect-video h-[135px] md:h-[263px] rounded-xl w-full object-cover"
                     />
                     <CardHeader className="px-1 pt-3">
-                        <Badge variant="destructive" className="w-fit bg-[#ed1f28] text-white hover:bg-red-50 hover:text-red-500 rounded-md px-2 py-0.5 text-sm font-bold mb-1">
+                        <Badge variant="destructive" className="w-fit bg-[#ed1f28] text-white hover:bg-red-50 hover:text-red-500 rounded-md px-2 py-0.5 text-[7.2px] md:text-sm font-bold mb-1">
                             Limited time offer
                         </Badge>
                         <CardTitle className="text-[10px] md:text-lg font-bold"> Double Door Fridge (240L)</CardTitle>
@@ -146,7 +146,7 @@ const Homecontent = () => {
                         className="relative z-20 aspect-video h-[135px] md:h-[263px] rounded-xl w-full object-cover"
                     />
                     <CardHeader className="px-1 pt-3">
-                        <Badge variant="secondary" className="w-fit bg-blue-50 text-[#ed1f28]  hover:text-red-500 rounded-md px-2 py-0.5 text-sm font-semibold mb-1">
+                        <Badge variant="secondary" className="w-fit bg-blue-50 text-[#ed1f28]  hover:text-red-500 rounded-md px-2 py-0.5 text-[7.2px] md:text-sm font-semibold mb-1">
                             Newly Added
                         </Badge>
                         <CardTitle className="text-[10px] md:text-lg font-bold">56'' LED TV</CardTitle>
@@ -163,7 +163,7 @@ const Homecontent = () => {
                         className="relative z-20 aspect-video h-[135px] md:h-[263px] rounded-xl w-full object-cover"
                     />
                     <CardHeader className="px-1 pt-3">
-                        <Badge variant="destructive" className="w-fit bg-[#ed1f28] text-white hover:bg-red-50 hover:text-red-500 rounded-md px-2 py-0.5 text-sm font-bold mb-1">
+                        <Badge variant="destructive" className="w-fit bg-[#ed1f28] text-white hover:bg-red-50 hover:text-red-500 rounded-md px-2 py-0.5 text-[7.2px] md:text-sm font-bold mb-1">
                             Limited time offer
                         </Badge>
                         <CardTitle className="text-[10px] md:text-lg font-bold">Double Door Fridge (240L)</CardTitle>
@@ -196,7 +196,7 @@ const Homecontent = () => {
 
             <div>
                 <h1 className="text-[#2b5cab] font-extrabold text-lg md:text-3xl text-center mb-[20px] md:mb-[60px]">Rent by Category</h1>
-                <div className='grid grid-cols-3 sm:flex sm:justify-center sm:items-center gap-[20px] md:gap-[60px] sm:h-[178px] w-full'>
+                <div className='grid grid-cols-3 xl:flex xl:justify-center xl:items-center gap-[20px] md:gap-[40px] xl:gap-[60px] sm:h-[178px] w-full'>
                     <div className='flex flex-col items-center gap-2 cursor-pointer group '>
                         <div className='w-[83px] md:w-[135px] h-[83px] md:h-[135px] rounded-full border border-gray-300 overflow-hidden'>
                             <img src="circlefridge.png" alt="" className='w-full h-full object-cover' />
@@ -236,8 +236,8 @@ const Homecontent = () => {
                 </div>
             </div>
 
-            <div className='h-[104px] sm:h-[226px]  bg-[#2b5cab] mt-[133px] mx-[20px] sm:mx-0 relative  rounded-[10px]'>
-                <div className='absolute  bottom-0 left-[-30px] lg:left-[50px]'>
+            <div className='h-[104px] sm:h-[226px]  bg-[#2b5cab] mt-[70px] md:mt-[303px] xl:mt-[133px] mx-[20px] sm:mx-0 relative  rounded-[10px]'>
+                <div className='absolute  bottom-0 left-[-50px] lg:left-[50px]'>
                     <img src='girlonchair.png' alt="" className='w-[240px] h-[159px] sm:h-[229px] sm:w-[522px] sm:h-[339px] object-fill ' />
                 </div>
                 <div className='flex  flex-col items-end '>
