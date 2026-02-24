@@ -20,6 +20,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import Link from 'next/link'
 
 
 
@@ -133,13 +134,15 @@ const Navbar = () => {
                 </SheetContent>
               </Sheet>
             </div> */}
-            <img className="max-w-[132px] " src="payrentz-logo.5c7f17d4.svg" alt="logo" />
+            <Link href='/'>
+              <img className="max-w-[132px] " src="/payrentz-logo.5c7f17d4.svg" alt="logo" />
+            </Link>
             <Dialog>
-              <DialogTrigger className='flex flex-row ml-[20px]' ><img src='location.8b71f906.svg' /><div className='text-xs font-semibold text-[13px] pl-2'><p className='text-gray-800'>Chennai</p><p className='text-gray-400'>600001</p></div></DialogTrigger>
+              <DialogTrigger className='flex flex-row ml-[20px]' ><img src='/location.8b71f906.svg' /><div className='text-xs font-semibold text-[13px] pl-2'><p className='text-gray-800'>Chennai</p><p className='text-gray-400'>600001</p></div></DialogTrigger>
               <DialogContent className='w-[1153px] sm:max-w-[1153px] max-w-[95vw] h-[450px] p-0 overflow-hidden rounded-[10px]'>
                 <div className='grid grid-cols-1 md:grid-cols-2 h-full'>
                   <div className='flex items-center justify-center'>
-                    <img src="dialogimg.png" alt="Location Illustration" className="max-w-full h-auto object-contain" />
+                    <img src="/dialogimg.png" alt="Location Illustration" className="max-w-full h-auto object-contain" />
                   </div>
 
                   <div className='pr-8 flex flex-col justify-center text-center md:text-left'>
@@ -166,25 +169,25 @@ const Navbar = () => {
                         <div className='flex gap-8'>
                           <div className='flex flex-col items-center gap-2 cursor-pointer group'>
                             <div className='w-20 h-20 rounded-full border border-gray-300 overflow-hidden'>
-                              <img src='chennai.svg' className='w-full h-full object-cover' alt="Chennai" />
+                              <img src='/chennai.svg' className='w-full h-full object-cover' alt="Chennai" />
                             </div>
                             <span className='text-xs font-medium  text-gray-600 group-hover:text-[#FF3F3F]'>Chennai</span>
                           </div>
                           <div className='flex flex-col items-center gap-2 cursor-pointer group'>
                             <div className='w-20 h-20 rounded-full border border-gray-300 overflow-hidden'>
-                              <img src='coimbatore.svg' className='w-full h-full object-cover' alt="Coimbatore" />
+                              <img src='/coimbatore.svg' className='w-full h-full object-cover' alt="Coimbatore" />
                             </div>
                             <span className='text-xs font-medium text-gray-600 group-hover:text-[#FF3F3F]'>Coimbatore</span>
                           </div>
                           <div className='flex flex-col items-center gap-2 cursor-pointer group'>
                             <div className='w-20 h-20 rounded-full border border-gray-300 overflow-hidden'>
-                              <img src='banglore.svg' className='w-full h-full object-cover' alt="Bengaluru" />
+                              <img src='/banglore.svg' className='w-full h-full object-cover' alt="Bengaluru" />
                             </div>
                             <span className='text-xs font-medium text-gray-600 group-hover:text-[#FF3F3F]'>Bengaluru</span>
                           </div>
                           <div className='flex flex-col items-center gap-2 cursor-pointer group'>
                             <div className='w-20 h-20 rounded-full border border-gray-300 overflow-hidden'>
-                              <img src='hosur.svg' className='w-full h-full object-cover' alt="Hosur" />
+                              <img src='/hosur.svg' className='w-full h-full object-cover' alt="Hosur" />
                             </div>
                             <span className='text-xs font-medium text-gray-600 group-hover:text-[#FF3F3F]'>Hosur</span>
                           </div>
@@ -196,9 +199,9 @@ const Navbar = () => {
               </DialogContent>
             </Dialog>
             <div className="hidden xl:flex items-center">
-              <a href='/appliances' className='flex items-center font-semibold pl-[30px] h-[16px] '><img src='washingmachine.png' className='w-[17px] h-[17px]  mr-[5px]' /><p>Appliances</p></a>
-              <a href='' className='flex items-center font-semibold pl-[30px] h-[16px] '><img src='sofa.png' className='w-[17px] h-[17px]  mr-[5px]' /><p>Furniture</p></a>
-              <a href='' className='flex items-center font-semibold pl-[30px] h-[16px] '><img src='home-appliances.png' className='w-[17px] h-[17px]  mr-[5px]' /><p>Packages</p></a>
+              <a href='/appliances' className='flex items-center font-semibold pl-[30px] h-[16px] '><img src='/washingmachine.png' className='w-[17px] h-[17px]  mr-[5px]' /><p>Appliances</p></a>
+              <a href='' className='flex items-center font-semibold pl-[30px] h-[16px] '><img src='/sofa.png' className='w-[17px] h-[17px]  mr-[5px]' /><p>Furniture</p></a>
+              <a href='' className='flex items-center font-semibold pl-[30px] h-[16px] '><img src='/home-appliances.png' className='w-[17px] h-[17px]  mr-[5px]' /><p>Packages</p></a>
             </div>
           </div>
           <div className='flex items-center gap-[30px]'>
@@ -234,7 +237,7 @@ const Navbar = () => {
               </SheetTrigger>
               <SheetContent side="left" className="w-[300px] sm:w-[540px]">
                 <SheetHeader>
-                  <SheetTitle className="text-left"><img className="max-w-[200px]" src="payrentz-logo.5c7f17d4.svg" alt="logo" /></SheetTitle>
+                  <SheetTitle className="text-left"><img className="max-w-[200px]" src="/payrentz-logo.5c7f17d4.svg" alt="logo" /></SheetTitle>
                   <SheetDescription className="hidden">
                     Navigation Menu
                   </SheetDescription>
@@ -244,7 +247,7 @@ const Navbar = () => {
                     <p className="font-semibold text-sm text-gray-500 mb-2">Delivery Location</p>
                     <Dialog>
                       <DialogTrigger className='flex flex-row items-center w-full' >
-                        <img src='location.8b71f906.svg' className="w-5 h-5" />
+                        <img src='/location.8b71f906.svg' className="w-5 h-5" />
                         <div className='text-left pl-2'>
                           <p className='text-sm font-semibold text-gray-800'>Chennai</p>
                           <p className='text-xs text-gray-500'>600001</p>
@@ -253,7 +256,7 @@ const Navbar = () => {
                       <DialogContent className='w-[1153px] sm:max-w-[1153px] max-w-[95vw] h-[450px] p-0 overflow-hidden rounded-[10px]'>
                         <div className='grid grid-cols-1 md:grid-cols-2 h-full'>
                           <div className='flex items-center justify-center hidden md:flex'>
-                            <img src="dialogimg.png" alt="Location Illustration" className="max-w-full h-auto object-contain" />
+                            <img src="/dialogimg.png" alt="Location Illustration" className="max-w-full h-auto object-contain" />
                           </div>
 
                           <div className='pr-8 flex flex-col justify-center text-center md:text-left p-6 md:p-0'>
@@ -280,25 +283,25 @@ const Navbar = () => {
                                 <div className='flex gap-4 overflow-x-auto pb-4'>
                                   <div className='flex flex-col items-center gap-2 cursor-pointer group min-w-[70px]'>
                                     <div className='w-16 h-16 rounded-full border border-gray-300 overflow-hidden'>
-                                      <img src='chennai.svg' className='w-full h-full object-cover' alt="Chennai" />
+                                      <img src='/chennai.svg' className='w-full h-full object-cover' alt="Chennai" />
                                     </div>
                                     <span className='text-xs font-medium  text-gray-600 group-hover:text-[#FF3F3F]'>Chennai</span>
                                   </div>
                                   <div className='flex flex-col items-center gap-2 cursor-pointer group min-w-[70px]'>
                                     <div className='w-16 h-16 rounded-full border border-gray-300 overflow-hidden'>
-                                      <img src='coimbatore.svg' className='w-full h-full object-cover' alt="Coimbatore" />
+                                      <img src='/coimbatore.svg' className='w-full h-full object-cover' alt="Coimbatore" />
                                     </div>
                                     <span className='text-xs font-medium text-gray-600 group-hover:text-[#FF3F3F]'>Coimbatore</span>
                                   </div>
                                   <div className='flex flex-col items-center gap-2 cursor-pointer group min-w-[70px]'>
                                     <div className='w-16 h-16 rounded-full border border-gray-300 overflow-hidden'>
-                                      <img src='banglore.svg' className='w-full h-full object-cover' alt="Bengaluru" />
+                                      <img src='/banglore.svg' className='w-full h-full object-cover' alt="Bengaluru" />
                                     </div>
                                     <span className='text-xs font-medium text-gray-600 group-hover:text-[#FF3F3F]'>Bengaluru</span>
                                   </div>
                                   <div className='flex flex-col items-center gap-2 cursor-pointer group min-w-[70px]'>
                                     <div className='w-16 h-16 rounded-full border border-gray-300 overflow-hidden'>
-                                      <img src='hosur.svg' className='w-full h-full object-cover' alt="Hosur" />
+                                      <img src='/hosur.svg' className='w-full h-full object-cover' alt="Hosur" />
                                     </div>
                                     <span className='text-xs font-medium text-gray-600 group-hover:text-[#FF3F3F]'>Hosur</span>
                                   </div>
@@ -313,26 +316,26 @@ const Navbar = () => {
 
                   <div className="flex flex-col gap-4">
                     <a href='/appliances' className='flex items-center font-semibold h-[16px] gap-2'>
-                      <img src='washingmachine.png' className='w-[20px] h-[20px]' />
+                      <img src='/washingmachine.png' className='w-[20px] h-[20px]' />
                       <p className="text-lg">Appliances</p>
                     </a>
                     <a href='' className='flex items-center font-semibold h-[16px] gap-2 mt-2'>
-                      <img src='sofa.png' className='w-[20px] h-[20px]' />
+                      <img src='/sofa.png' className='w-[20px] h-[20px]' />
                       <p className="text-lg">Furniture</p>
                     </a>
                     <a href='' className='flex items-center font-semibold h-[16px] gap-2 mt-2'>
-                      <img src='home-appliances.png' className='w-[20px] h-[20px]' />
+                      <img src='/home-appliances.png' className='w-[20px] h-[20px]' />
                       <p className="text-lg">Packages</p>
                     </a>
                   </div>
                 </div>
               </SheetContent>
             </Sheet>
-            <img className="max-w-[100px]" src="payrentz-logo.5c7f17d4.svg" alt="logo" />
+            <img className="max-w-[100px]" src="/payrentz-logo.5c7f17d4.svg" alt="logo" />
           </div>
           <div className="flex items-center gap-4">
             <Button className="bg-[#ED1F28] hover:bg-[#F87171] text-white font-bold h-8 px-4 rounded">Login</Button>
-            <img src="cart.5fa6c9b1.svg" alt="cart" className="w-6 h-6" />
+            <img src="/cart.5fa6c9b1.svg" alt="cart" className="w-6 h-6" />
           </div>
         </div>
         <div className="px-4 pb-4">

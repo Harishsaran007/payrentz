@@ -236,15 +236,18 @@ const Homecontent = () => {
                 </div>
             </div>
 
-            <div className='h-[104px] sm:h-[226px]  bg-[#2b5cab] mt-[70px] md:mt-[303px] xl:mt-[133px] mx-[20px] sm:mx-0 relative  rounded-[10px]'>
-                <div className='absolute  bottom-0 left-[-50px] lg:left-[50px]'>
-                    <img src='girlonchair.png' alt="" className='w-[240px] h-[159px] sm:h-[229px] sm:w-[522px] sm:h-[339px] object-fill ' />
+            <div className='h-[104px] lg:h-[226px]  bg-[#2b5cab] mt-[70px] md:mt-[303px] xl:mt-[133px] mx-[20px] sm:mx-0 relative  rounded-[10px]'>
+                <div>
+                    <div className='absolute  bottom-0 left-[-50px] sm:left-[-30px] '>
+                    <img src='girlonchair.png' alt="" className='w-[240px] h-[159px] lg:h-[229px] lg:w-[522px] lg:h-[339px] object-fill ' />
                 </div>
+                </div>
+                
                 <div className='flex  flex-col items-end '>
-                    <div className='flex flex-col items-start mr-[10px] sm:mr-[86px] mt-[17px] sm:mt-[45px]'>
-                        <h1 className='font-extrabold text-white text-xs sm:text-4xl'>Modern chairs for your living room</h1>
-                        <h3 className='font-semibold text-white text-[8px] sm:text-2xl my-[6px] sm:mt-[11px] sm:mb-[20px]'>Contemporary style chairs, starting from ₹850.</h3>
-                        <span className='font-bold text-white text-[8px] sm:text-lg bg-red-500 py-[6px] sm:px-[15px] px-[12px] sm:py-[8px] rounded-md'> Explore Furniture</span>
+                    <div className='flex flex-col items-start mr-[10px] lg:mr-[86px] mt-[17px] lg:mt-[45px]'>
+                        <h1 className='font-extrabold text-white text-xs lg:text-4xl'>Modern chairs for your living room</h1>
+                        <h3 className='font-semibold text-white text-[8px] lg:text-2xl my-[6px] lg:mt-[11px] lg:mb-[20px]'>Contemporary style chairs, starting from ₹850.</h3>
+                        <span className='font-bold text-white text-[8px] lg:text-lg bg-red-500 py-[6px] lg:px-[15px] px-[12px] lg:py-[8px] rounded-md'> Explore Furniture</span>
                     </div>
                 </div>
             </div>
@@ -394,35 +397,35 @@ const Homecontent = () => {
                 </div>
             </div>
 
-            <div className='w-full mt-[15px]'>
+            <div className='w-full mt-[15px] '>
                 <h1 className='font-extrabold text-[28px] text-blue-800 text-center '>PayRentz Media</h1>
-                <div className='flex flex-col sm:flex-row mt-[30px]'>
-                    <div className=' sm:w-[701px] h-[203px] sm:h-[376px]'>
+                <div className='flex flex-col lg:flex-row mt-[30px]'>
+                    <div className=' lg:w-1/2 h-[203px] lg:h-[376px]'>
                         <div className='flex h-full '>
-                            <img src='media1.jpg' className='w-[40%] sm:w-[50%] object-cover' />
+                            <img src='media1.jpg' className='w-2/5 lg:w-1/2 object-cover' />
                             <div className='bg-blue-50'>
                                 <div className='text-end'>
-                                    <Badge variant="destructive" className='text-[8px] sm:text-[15px] rounded-none bg-blue-800 py-[5px] sm:py-[12px] px-[7px] sm:px-[15px]' >In the News</Badge>
+                                    <Badge variant="destructive" className='text-[8px] lg:text-[15px] rounded-none bg-blue-800 py-[5px] lg:py-[12px] px-[7px] lg:px-[15px]' >In the News</Badge>
                                 </div>
                                 <div className='mt-[13px] sm:mt-[48px] ml-[25px] '>
-                                    <h1 className='text-[#0a2d45] font-extrabold text-sm sm:text-[22px] '>Innovative  Ecommerce Rental Solutions  Redefining Online Shopping</h1>
-                                    <p className='mt-[20px] text-[8px] sm:text-base'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.</p>
-                                    <p className='text-gray-600 text-[8px] sm:text-xs mt-[20px]'>August 30,2023</p>
+                                    <h1 className='text-[#0a2d45] font-extrabold text-sm lg:text-[22px] '>Innovative  Ecommerce Rental Solutions  Redefining Online Shopping</h1>
+                                    <p className='mt-[20px] text-[8px] lg:text-base'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.</p>
+                                    <p className='text-gray-600 text-[8px] lg:text-xs mt-[20px]'>August 30,2023</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className=' sm:w-[701px] h-[203px] sm:h-[376px] sm:ml-[39px] mt-[30px] sm:mt-0'>
+                    <div className=' lg:w-1/2 h-[203px] lg:h-[376px] lg:ml-[39px] mt-[30px] lg:mt-0'>
                         <div className='flex  h-full '>
-                            <img src='media2.jpg' className='w-[40%] sm:w-[50%] object-cover' />
+                            <img src='media2.jpg' className='w-2/5 lg:w-1/2 object-cover' />
                             <div className='bg-blue-50'>
                                 <div className='text-end'>
-                                    <Badge variant="destructive" className='text-[8px] sm:text-[15px] rounded-none bg-blue-800 py-[5px] sm:py-[12px] px-[21px] sm:px-[41px]' >Blog</Badge>
+                                    <Badge variant="destructive" className='text-[8px] lg:text-[15px] rounded-none bg-blue-800 py-[5px] lg:py-[12px] px-[21px] lg:px-[41px]' >Blog</Badge>
                                 </div>
-                                <div className='mt-[13px] sm:mt-[48px] ml-[25px] '>
-                                    <h1 className='text-[#0a2d45] font-extrabold text-sm sm:text-[22px] '>Transforming Shopping: The Emergence of Contemporary Ecommerce Rentals</h1>
-                                    <p className='mt-[20px] text-[8px] sm:text-base'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.</p>
-                                    <p className='text-gray-600 text-[8px] sm:text-xs mt-[20px]'>August 30,2023</p>
+                                <div className='mt-[13px] lg:mt-[48px] ml-[25px] '>
+                                    <h1 className='text-[#0a2d45] font-extrabold text-sm lg:text-[22px] '>Transforming Shopping: The Emergence of Contemporary Ecommerce Rentals</h1>
+                                    <p className='mt-[20px] text-[8px] lg:text-base'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis.</p>
+                                    <p className='text-gray-600 text-[8px] lg:text-xs mt-[20px]'>August 30,2023</p>
                                 </div>
                             </div>
                         </div>

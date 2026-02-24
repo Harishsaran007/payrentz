@@ -9,7 +9,7 @@ const Footer = () => {
             <div className='flex flex-col sm:flex-row justify-between items-center'>
                 <div className='w-[206px] h-[164px]'>
                     <div>
-                        <img src='footerlogo.png' className='w-[177px] h-[45px] object-cover' />
+                        <img src='/footerlogo.png' className='w-[177px] h-[45px] object-cover' />
                     </div>
                     <div className='text-white flex flex-col gap-[10px] items-center'>
                         <p className='text-xl font-bold'>Contact us</p>
