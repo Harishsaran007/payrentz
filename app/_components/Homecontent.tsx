@@ -1,11 +1,6 @@
 import React from 'react'
 import { Badge } from "@/components/ui/badge"
-
-import {
-    Card,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
+import Cards from './cards';
 import { Button } from '@/components/ui/button'
 
 import {
@@ -87,12 +82,12 @@ const Homecontent = () => {
                                 <p className='text-white text-xl md:text-5xl font-extrabold leading-tight pl-[10px] md:pl-0'>2 days!</p>
                             </div>
                             <div className='absolute bottom-[-100px] right-[5px] md:top-0 md:right-0'>
-                                <img src='redshirt.png' className='w-[222px] object-contain' />
+                                <img src='/redshirt.png' className='w-[222px] object-contain' />
                             </div>
                         </div>
                         <div className='relative bg-[#EC2027] h-[170px] rounded-[10px] flex flex-col justify-start md:justify-center items-center flex-1 overflow-hidden'>
                             <div className='absolute bottom-0  md:left-0 '>
-                                <img src='blueshirt.png' className='w-[222px] object-contain' />
+                                <img src='/blueshirt.png' className='w-[222px] object-contain' />
                             </div>
                             <div className='flex flex-row md:flex-col justify-center items-center text-start md:text-center z-10 w-full md:pl-[140px] pt-[10px] md:pt-[0px]'>
                                 <p className='font-extrabold text-sm md:text-5xl text-white'>Google</p>
@@ -105,92 +100,24 @@ const Homecontent = () => {
 
 
             <div className='sm:flex sm:gap-[20px] sm:pr-[40px] grid grid-cols-2 gap-4 px-[30px] sm:px-0'>
-                <Card className="relative mr-[40px] mx-auto w-full max-w-sm pt-0 border-none shadow-none hover:border hover:border-gray-200 hover:shadow-md">
-                    <img
-                        src="card1.png"
-                        alt="Front Load Washing Machine"
-                        className="relative z-20 aspect-video h-[135px] md:h-[263px] rounded-xl w-full object-cover"
-                    />
-                    <CardHeader className="px-1 pt-3">
-                        <Badge variant="secondary" className="w-fit  text-[#ed1f28] font-bold  hover:text-red-500 rounded-md px-2 py-0.5 text-[7.2px] md:text-sm font-semibold mb-1 bg-blue-50">
-                            Newly Added
-                        </Badge>
-                        <CardTitle className="text-[10px] md:text-lg font-bold">Front Load Washing Machine (6kg)</CardTitle>
-                        <div className="flex items-baseline gap-1">
-                            <span className="text-sm md:text-xl font-extrabold">₹650</span>
-                            <span className="text-gray-500 text-[10px] md:text-base font-medium">/month</span>
-                        </div>
-                    </CardHeader>
-                </Card>
-                <Card className="relative mr-[40px] mx-auto w-full max-w-sm pt-0 border-none shadow-none hover:border hover:border-gray-200 hover:shadow-md">
-                    <img
-                        src="card2.png"
-                        alt="Front Load Washing Machine"
-                        className="relative z-20 aspect-video h-[135px] md:h-[263px] rounded-xl w-full object-cover"
-                    />
-                    <CardHeader className="px-1 pt-3">
-                        <Badge variant="destructive" className="w-fit bg-[#ed1f28] text-white hover:bg-red-50 hover:text-red-500 rounded-md px-2 py-0.5 text-[7.2px] md:text-sm font-bold mb-1">
-                            Limited time offer
-                        </Badge>
-                        <CardTitle className="text-[10px] md:text-lg font-bold"> Double Door Fridge (240L)</CardTitle>
-                        <div className="flex items-baseline gap-1">
-                            <span className="text-sm md:text-xl font-extrabold">₹650</span>
-                            <span className="text-gray-500 text-[10px] md:text-base font-medium">/month</span>
-                        </div>
-                    </CardHeader>
-                </Card>
-                <Card className="relative mr-[40px] mx-auto w-full max-w-sm pt-0 border-none shadow-none hover:border hover:border-gray-200 hover:shadow-md">
-                    <img
-                        src="card3.png"
-                        alt="Front Load Washing Machine"
-                        className="relative z-20 aspect-video h-[135px] md:h-[263px] rounded-xl w-full object-cover"
-                    />
-                    <CardHeader className="px-1 pt-3">
-                        <Badge variant="secondary" className="w-fit bg-blue-50 text-[#ed1f28]  hover:text-red-500 rounded-md px-2 py-0.5 text-[7.2px] md:text-sm font-semibold mb-1">
-                            Newly Added
-                        </Badge>
-                        <CardTitle className="text-[10px] md:text-lg font-bold">56'' LED TV</CardTitle>
-                        <div className="flex items-baseline gap-1">
-                            <span className="text-sm md:text-xl font-extrabold">₹650</span>
-                            <span className="text-gray-500 text-[10px] md:text-base font-medium">/month</span>
-                        </div>
-                    </CardHeader>
-                </Card>
-                <Card className="relative mr-[40px] mx-auto w-full max-w-sm pt-0 border-none shadow-none hover:border hover:border-gray-200 hover:shadow-md">
-                    <img
-                        src="card1.png"
-                        alt="Front Load Washing Machine"
-                        className="relative z-20 aspect-video h-[135px] md:h-[263px] rounded-xl w-full object-cover"
-                    />
-                    <CardHeader className="px-1 pt-3">
-                        <Badge variant="destructive" className="w-fit bg-[#ed1f28] text-white hover:bg-red-50 hover:text-red-500 rounded-md px-2 py-0.5 text-[7.2px] md:text-sm font-bold mb-1">
-                            Limited time offer
-                        </Badge>
-                        <CardTitle className="text-[10px] md:text-lg font-bold">Double Door Fridge (240L)</CardTitle>
-                        <div className="flex items-baseline gap-1">
-                            <span className="text-sm md:text-xl font-extrabold">₹650</span>
-                            <span className="text-gray-500 text-[10px] md:text-base font-medium">/month</span>
-                        </div>
-                    </CardHeader>
-                </Card>
+                <Cards />
             </div>
 
             <div className='flex flex-col sm:flex-row justify-center  sm:gap-[150px] gap-[20px] py-[20px] md:py-[50px] mx-auto  items-center bg-blue-50 w-[335px] md:w-full  my-[50px]'>
                 <h1 className='text-[#ed1f28] font-extrabold text-base md:text-3xl'>payrentz promise</h1>
                 <div className='flex gap-[40px] '>
                     <div className='flex flex-col items-center justify-between w-[59px] md:w-[94px] h-[62px]'>
-                        <img src="deliver.png" alt="" className='w-[44px] h-[32px] object-cover' />
+                        <img src="/deliver.png" alt="" className='w-[44px] h-[32px] object-cover' />
                         <p className='text-[12px] font-bold text-center leading-tight'>2-day delivery</p>
                     </div>
                     <div className='flex flex-col items-center justify-between w-[100px] md:w-[190px] h-[59px]'>
-                        <img src="tool.png" alt="" className='w-[36px] h-[36px] object-cover ' />
+                        <img src="/tool.png" alt="" className='w-[36px] h-[36px] object-cover ' />
                         <p className='text-[12px] font-bold text-center leading-tight'>Service Support for 6 months</p>
                     </div>
                     <div className='flex flex-col items-center justify-between w-[77px] md:w-[131px] h-[60px]'>
-                        <img src="tick.png" alt="" className='w-[36px] h-[36px] object-cover' />
+                        <img src="/tick.png" alt="" className='w-[36px] h-[36px] object-cover' />
                         <p className='text-[12px] font-bold text-center leading-tight'>Secure transactions</p>
                     </div>
-
                 </div>
             </div>
 
@@ -199,37 +126,37 @@ const Homecontent = () => {
                 <div className='grid grid-cols-3 xl:flex xl:justify-center xl:items-center gap-[20px] md:gap-[40px] xl:gap-[60px] sm:h-[178px] w-full'>
                     <div className='flex flex-col items-center gap-2 cursor-pointer group '>
                         <div className='w-[83px] md:w-[135px] h-[83px] md:h-[135px] rounded-full border border-gray-300 overflow-hidden'>
-                            <img src="circlefridge.png" alt="" className='w-full h-full object-cover' />
+                            <img src="/circlefridge.png" alt="" className='w-full h-full object-cover' />
                         </div>
                         <span className='font-bold text-xs md:text-lg'>Refrigerators</span>
                     </div>
                     <div className='flex flex-col items-center gap-2 cursor-pointer group '>
                         <div className='w-[83px] md:w-[135px] h-[83px] md:h-[135px] rounded-full border border-gray-300 overflow-hidden'>
-                            <img src="circlemachine.jpg" alt="" className='w-full h-full object-cover' />
+                            <img src="/circlemachine.jpg" alt="" className='w-full h-full object-cover' />
                         </div>
                         <span className='font-bold text-xs md:text-lg text-center w-[159px] '>Washing Machine</span>
                     </div>
                     <div className='flex flex-col items-center gap-2 cursor-pointer group '>
                         <div className='w-[83px] md:w-[135px] h-[83px] md:h-[135px] rounded-full border border-gray-300 overflow-hidden'>
-                            <img src="mattress.jpg" alt="" className='w-full h-full object-cover' />
+                            <img src="/mattress.jpg" alt="" className='w-full h-full object-cover' />
                         </div>
                         <span className='font-bold text-xs md:text-lg'>Mattress</span>
                     </div>
                     <div className='flex flex-col items-center gap-2 cursor-pointer group '>
                         <div className='w-[83px] md:w-[135px] h-[83px] md:h-[135px] rounded-full border border-gray-300 overflow-hidden'>
-                            <img src="cots.jpg" alt="" className='w-full h-full object-cover' />
+                            <img src="/cots.jpg" alt="" className='w-full h-full object-cover' />
                         </div>
                         <span className='font-bold text-xs md:text-lg'>Cots</span>
                     </div>
                     <div className='flex flex-col items-center gap-2 cursor-pointer group '>
                         <div className='w-[83px] md:w-[135px] h-[83px] md:h-[135px] rounded-full border border-gray-300 overflow-hidden'>
-                            <img src="AC.png" alt="" className='w-full h-full object-cover' />
+                            <img src="/AC.png" alt="" className='w-full h-full object-cover' />
                         </div>
                         <span className='font-bold text-xs md:text-lg'>Air Conditioners</span>
                     </div>
                     <div className='flex flex-col items-center gap-2 cursor-pointer group '>
                         <div className='w-[83px] md:w-[135px] h-[83px] md:h-[135px] rounded-full border border-gray-300 overflow-hidden'>
-                            <img src="circletv.jpg" alt="" className='w-full h-full object-cover' />
+                            <img src="/circletv.jpg" alt="" className='w-full h-full object-cover' />
                         </div>
                         <span className='font-bold text-xs md:text-lg'>Televisions</span>
                     </div>
@@ -239,7 +166,7 @@ const Homecontent = () => {
             <div className='h-[104px] lg:h-[226px]  bg-[#2b5cab] mt-[70px] md:mt-[303px] xl:mt-[133px] mx-[20px] sm:mx-0 relative  rounded-[10px]'>
                 <div>
                     <div className='absolute  bottom-0 left-[-50px] sm:left-[-30px] '>
-                    <img src='girlonchair.png' alt="" className='w-[240px] h-[159px] lg:h-[229px] lg:w-[522px] lg:h-[339px] object-fill ' />
+                    <img src='/girlonchair.png' alt="" className='w-[240px] h-[159px] lg:h-[229px] lg:w-[522px] lg:h-[339px] object-fill ' />
                 </div>
                 </div>
                 
@@ -255,76 +182,10 @@ const Homecontent = () => {
             <div className='mt-[80px]'>
                 <h1 className='text-blue-800 font-extrabold text-center text-[28px] mb-[20px] md:mb-[30px] '>Rent Appliances</h1>
                 <div className=' grid grid-cols-2 sm:flex gap-[20px] sm:pr-[40px] mx-[25px]'>
-                    <Card className="relative mr-[40px] mx-auto w-full max-w-sm pt-0 border-none shadow-none hover:border hover:border-gray-200 hover:shadow-md">
-                        <img
-                            src="card1.png"
-                            alt="Front Load Washing Machine"
-                            className="relative z-20 aspect-video h-[135px] md:h-[263px] rounded-xl w-full object-cover"
-                        />
-                        <CardHeader className="px-1 pt-3">
-                            <Badge variant="secondary" className="w-fit  text-[#ed1f28] font-bold  hover:text-red-500 rounded-md px-2 py-0.5 text-[7.2px] md:text-sm font-semibold mb-1 bg-blue-50">
-                                Newly Added
-                            </Badge>
-                            <CardTitle className="text-[10px] md:text-lg font-bold">Front Load Washing Machine (6kg)</CardTitle>
-                            <div className="flex items-baseline gap-1">
-                                <span className="text-sm md:text-xl font-extrabold">₹650</span>
-                                <span className="text-gray-500 text-[10px] md:text-base font-medium">/month</span>
-                            </div>
-                        </CardHeader>
-                    </Card>
-                    <Card className="relative mr-[40px] mx-auto w-full max-w-sm pt-0 border-none shadow-none hover:border hover:border-gray-200 hover:shadow-md">
-                        <img
-                            src="card2.png"
-                            alt="Front Load Washing Machine"
-                            className="relative z-20 aspect-video h-[135px] md:h-[263px] rounded-xl w-full object-cover"
-                        />
-                        <CardHeader className="px-1 pt-3">
-                            <Badge variant="destructive" className="w-fit bg-[#ed1f28] text-white hover:bg-red-50 hover:text-red-500 rounded-md px-2 py-0.5 text-[7.2px] md:text-sm font-bold mb-1">
-                                Limited time offer
-                            </Badge>
-                            <CardTitle className="text-[10px] md:text-lg font-bold"> Double Door Fridge (240L)</CardTitle>
-                            <div className="flex items-baseline gap-1">
-                                <span className="text-sm md:text-xl font-extrabold">₹650</span>
-                                <span className="text-gray-500 text-[10px] md:text-base font-medium">/month</span>
-                            </div>
-                        </CardHeader>
-                    </Card>
-                    <Card className="relative mr-[40px] mx-auto w-full max-w-sm pt-0 border-none shadow-none hover:border hover:border-gray-200 hover:shadow-md">
-                        <img
-                            src="card3.png"
-                            alt="Front Load Washing Machine"
-                            className="relative z-20 aspect-video h-[135px] md:h-[263px] rounded-xl w-full object-cover"
-                        />
-                        <CardHeader className="px-1 pt-3">
-                            <Badge variant="secondary" className="w-fit bg-blue-50 text-[#ed1f28]  hover:text-red-500 rounded-md px-2 py-0.5 text-[7.2px] md:text-sm font-semibold mb-1">
-                                Newly Added
-                            </Badge>
-                            <CardTitle className="text-[10px] md:text-lg font-bold">56'' LED TV</CardTitle>
-                            <div className="flex items-baseline gap-1">
-                                <span className="text-sm md:text-xl font-extrabold">₹650</span>
-                                <span className="text-gray-500 text-[10px] md:text-base font-medium">/month</span>
-                            </div>
-                        </CardHeader>
-                    </Card>
-                    <Card className="relative mr-[40px] mx-auto w-full max-w-sm pt-0 border-none shadow-none hover:border hover:border-gray-200 hover:shadow-md">
-                        <img
-                            src="card1.png"
-                            alt="Front Load Washing Machine"
-                            className="relative z-20 aspect-video h-[135px] md:h-[263px] rounded-xl w-full object-cover"
-                        />
-                        <CardHeader className="px-1 pt-3">
-                            <Badge variant="destructive" className="w-fit bg-[#ed1f28] text-white hover:bg-red-50 hover:text-red-500 rounded-md px-2 py-0.5 text-[7.2px] md:text-sm font-bold mb-1">
-                                Limited time offer
-                            </Badge>
-                            <CardTitle className="text-[10px] md:text-lg font-bold">Double Door Fridge (240L)</CardTitle>
-                            <div className="flex items-baseline gap-1">
-                                <span className="text-sm md:text-xl font-extrabold">₹650</span>
-                                <span className="text-gray-500 text-[10px] md:text-base font-medium">/month</span>
-                            </div>
-                        </CardHeader>
-                    </Card>
+                    <Cards />
                 </div>
             </div>
+
             <div className='bg-[#2b5cab] mx-[20px] sm:mx-[0px] mt-[80px] rounded-[20px] relative overflow-hidden sm:mr-[20px]'>
                 <div className='hidden xl:flex relative justify-between h-[485px]'>
                     <div className='pl-[68px] '>
@@ -333,11 +194,11 @@ const Homecontent = () => {
                             <span className='text-[40px]'>Unveiling Customer Journey</span>
                         </h2>
                         <div className='flex mt-[68px]'>
-                            <img src='image1.png' className='w-[190px] h-[194px] rounded-[50%]' />
-                            <img src='image2.jpg' className='w-[113px] h-[194px] object-[10%_center] object-cover rounded-r-full ' />
-                            <img src='image3.jpg' className='w-[113px] h-[194px] object-[20%_center] object-cover rounded-r-full' />
-                            <img src='image4.png' className='w-[113px] h-[194px] object-[25%_center] object-cover rounded-r-full' />
-                            <img src='image5.png' className='w-[113px] h-[194px] object-[50%_center] object-cover rounded-r-full' />
+                            <img src='/image1.png' className='w-[190px] h-[194px] rounded-[50%]' />
+                            <img src='/image2.jpg' className='w-[113px] h-[194px] object-[10%_center] object-cover rounded-r-full ' />
+                            <img src='/image3.jpg' className='w-[113px] h-[194px] object-[20%_center] object-cover rounded-r-full' />
+                            <img src='/image4.png' className='w-[113px] h-[194px] object-[25%_center] object-cover rounded-r-full' />
+                            <img src='/image5.png' className='w-[113px] h-[194px] object-[50%_center] object-cover rounded-r-full' />
                         </div>
                     </div>
                     <div className='w-[546px] h-[366px] mt-[50px] pr-[67px] '>
@@ -377,20 +238,20 @@ const Homecontent = () => {
                     <div className='w-full flex justify-center items-center mt-4 sm:justify-start'>
                         <div className='flex items-center -space-x-1'>
                             <div className='z-50 w-24 h-24 rounded-full overflow-hidden shadow-lg'>
-                                <img src='image1.png' className='w-full h-full object-cover' alt="Customer 1" />
+                                <img src='/image1.png' className='w-full h-full object-cover' alt="Customer 1" />
                             </div>
 
                             <div className='z-40 w-16 h-24 rounded-r-full overflow-hidden border-l-2 border-[#2b5cab]  shadow-md'>
-                                <img src='image2.jpg' className='w-full h-full object-cover object-[20%]' alt="Customer 2" />
+                                <img src='/image2.jpg' className='w-full h-full object-cover object-[20%]' alt="Customer 2" />
                             </div>
                             <div className='z-30 w-16 h-24 rounded-r-full overflow-hidden border-l-2 border-[#2b5cab] shadow-md'>
-                                <img src='image3.jpg' className='w-full h-full object-cover object-[20%]' alt="Customer 3" />
+                                <img src='/image3.jpg' className='w-full h-full object-cover object-[20%]' alt="Customer 3" />
                             </div>
                             <div className='z-20 w-16 h-24 rounded-r-full overflow-hidden border-l-2 border-[#2b5cab] shadow-md'>
-                                <img src='image4.png' className='w-full h-full object-cover object-[20%]' alt="Customer 4" />
+                                <img src='/image4.png' className='w-full h-full object-cover object-[20%]' alt="Customer 4" />
                             </div>
                             <div className='z-10 w-16 h-24 rounded-r-full overflow-hidden border-l-2 border-[#2b5cab] shadow-md'>
-                                <img src='image5.png' className='w-full h-full object-cover object-[20%]' alt="Customer 5" />
+                                <img src='/image5.png' className='w-full h-full object-cover object-[20%]' alt="Customer 5" />
                             </div>
                         </div>
                     </div>
@@ -402,7 +263,7 @@ const Homecontent = () => {
                 <div className='flex flex-col lg:flex-row mt-[30px]'>
                     <div className=' lg:w-1/2 h-[203px] lg:h-[376px]'>
                         <div className='flex h-full '>
-                            <img src='media1.jpg' className='w-2/5 lg:w-1/2 object-cover' />
+                            <img src='/media1.jpg' className='w-2/5 lg:w-1/2 object-cover' />
                             <div className='bg-blue-50'>
                                 <div className='text-end'>
                                     <Badge variant="destructive" className='text-[8px] lg:text-[15px] rounded-none bg-blue-800 py-[5px] lg:py-[12px] px-[7px] lg:px-[15px]' >In the News</Badge>
@@ -417,7 +278,7 @@ const Homecontent = () => {
                     </div>
                     <div className=' lg:w-1/2 h-[203px] lg:h-[376px] lg:ml-[39px] mt-[30px] lg:mt-0'>
                         <div className='flex  h-full '>
-                            <img src='media2.jpg' className='w-2/5 lg:w-1/2 object-cover' />
+                            <img src='/media2.jpg' className='w-2/5 lg:w-1/2 object-cover' />
                             <div className='bg-blue-50'>
                                 <div className='text-end'>
                                     <Badge variant="destructive" className='text-[8px] lg:text-[15px] rounded-none bg-blue-800 py-[5px] lg:py-[12px] px-[21px] lg:px-[41px]' >Blog</Badge>

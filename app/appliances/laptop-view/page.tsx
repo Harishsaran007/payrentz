@@ -10,30 +10,24 @@ import {
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
 import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
-import {
     Tabs,
     TabsContent,
     TabsList,
     TabsTrigger,
 } from "@/components/ui/tabs"
-import { Badge } from '@/components/ui/badge'
 import {
     Carousel,
     CarouselContent,
     CarouselItem,
     type CarouselApi,
 } from "@/components/ui/carousel"
+import Cards from '@/app/_components/cards'
 
 
 const Pageview = () => {
     const [api, setApi] = React.useState<CarouselApi>()
     const [selectedIndex, setSelectedIndex] = React.useState(0)
+    const [selectedTenure, setSelectedTenure] = React.useState(2)
 
     React.useEffect(() => {
         if (!api) return
@@ -82,7 +76,7 @@ const Pageview = () => {
                         <img src='/lap3.png' className='w-[326px] h-[326px] border rounded-[5px] object-contain' />
                         <img src='/lap4.png' className='w-[326px] h-[326px] border rounded-[5px] object-contain' />
                     </div>
-                    
+
                     <div className='lg:hidden block border rounded-[10px] p-[20px] bg-white relative'>
                         <Carousel setApi={setApi} opts={{ loop: true }} className="w-full">
                             <CarouselContent>
@@ -103,9 +97,9 @@ const Pageview = () => {
                             ))}
                         </div>
                     </div>
-                    <div className='order-3 py-[31px] lg:col-start-1 lg:row-start-2'>
+                    <div className='order-3 py-[31px] lg:col-start-1 lg:row-start-2 '>
                         <Tabs defaultValue="discription" >
-                            <TabsList variant='line' className='w-full  pl-[50px]  overflow-x-auto'>
+                            <TabsList variant='line' className='w-full pl-[50px] overflow-x-auto overflow-y-hidden [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]'>
                                 <TabsTrigger value="discription">Description</TabsTrigger>
                                 <TabsTrigger value="specifications">Specifications</TabsTrigger>
                                 <TabsTrigger value="questions">Frequently Asked Questions</TabsTrigger>
@@ -199,27 +193,35 @@ const Pageview = () => {
                             <p className='lg:text-sm text-xs font-bold underline text-[#2B5CAB] text-end ml-auto'>Compare Tenures</p>
                         </div>
                         <div className='grid grid-cols-2 xl:flex xl:justify-evenly gap-[10px] xl:gap-0 pt-[10px] xl:pt-[20px]'>
-                            <div className='text-center border p-[15px] lg:pt-[20px] rounded-[5px] bg-white'>
-                                <p className='font-semibold text-xs lg:text-[15px]'>12+ months</p>
-                                <h1 className='font-bold text-[22px]  lg:text-[28px] pt-[5px] lg:pt-[10px] flex justify-center items-center lg:flex-col'>₹1800<span className='text-xs text-gray-500 font-normal'>/month</span></h1>
-                                <Button variant='outline' className='hidden lg:block mx-auto border-red-500 text-red-500 text-sm font-bold border-[2px] mt-[20px] w-full max-w-[120px]'>Pick Tenure</Button>
-                            </div>
-                            <div className='relative text-center border p-[15px] pt-[10px] lg:pt-[20px] rounded-[5px] bg-white lg:mt-0'>
-                                <div className='absolute top-[-10px] left-1/2 -translate-x-1/2 bg-[#2B5CAB] text-white text-[10px] px-[8px] py-[2px] rounded-[5px] whitespace-nowrap shadow-sm font-semibold tracking-wide'>Most Picked</div>
-                                <p className='font-semibold text-xs lg:text-[15px]'>6+ months</p>
-                                <h1 className='font-bold text-[22px] lg:text-[28px] pt-[5px] lg:pt-[10px] flex justify-center items-center lg:flex-col'>₹2000<span className='text-xs text-gray-500 font-normal'>/month</span></h1>
-                                <Button variant='outline' className='hidden lg:block mx-auto border-red-500 text-red-500 text-sm font-bold border-[2px] mt-[20px] w-full max-w-[120px]'>Pick Tenure</Button>
-                            </div>
-                            <div className='text-center border p-[15px] lg:pt-[20px] rounded-[5px] bg-[#FFEBEB] lg:bg-white border-red-500 border-[2px] mt-[10px] lg:mt-0'>
-                                <p className='font-semibold text-xs lg:text-[15px] text-red-500'>3+ months</p>
-                                <h1 className='font-bold text-[22px] lg:text-[28px] pt-[5px] lg:pt-[10px] text-red-500 flex justify-center items-center lg:flex-col'>₹2000<span className='text-xs text-gray-500 font-normal'>/month</span></h1>
-                                <Button variant='destructive' className='hidden lg:block mx-auto border-red-500 text-white text-sm font-bold border-[2px] mt-[20px] w-full max-w-[120px]'>Selected</Button>
-                            </div>
-                            <div className='text-center border p-[15px] lg:pt-[20px] rounded-[5px] bg-white mt-[10px] lg:mt-0'>
-                                <p className='font-semibold text-xs lg:text-[15px]'>1 month</p>
-                                <h1 className='font-bold text-[22px] lg:text-[28px] pt-[5px] lg:pt-[10px] flex justify-center items-center lg:flex-col'>₹2500<span className='text-xs text-gray-500 font-normal'>/month</span></h1>
-                                <Button variant='outline' className='hidden lg:block mx-auto border-red-500 text-red-500 text-sm font-bold border-[2px] mt-[20px] w-full max-w-[120px]'>Pick Tenure</Button>
-                            </div>
+                            {[
+                                { months: '12+ months', price: '₹1800', mostPicked: false },
+                                { months: '6+ months', price: '₹2000', mostPicked: true },
+                                { months: '3+ months', price: '₹2000', mostPicked: false },
+                                { months: '1 month', price: '₹2500', mostPicked: false }
+                            ].map((tenure, index) => {
+                                const isSelected = selectedTenure === index;
+                                return (
+                                    <div
+                                        key={index}
+                                        onClick={() => setSelectedTenure(index)}
+                                        className={`relative flex-1 text-center border p-[15px] ${tenure.mostPicked ? 'pt-[10px]' : ''} lg:pt-[25px] rounded-[5px] cursor-pointer xl:max-w-[130px] ${isSelected ? 'bg-[#FFEBEB] lg:bg-white border-red-500 border-[2px]' : 'bg-white'
+                                            } ${index > 1 ? 'mt-[10px] lg:mt-0' : (index === 1 ? 'lg:mt-0' : '')}`}
+                                    >
+                                        {tenure.mostPicked && (
+                                            <div className='absolute top-[-10px] left-1/2 -translate-x-1/2 bg-[#2B5CAB] text-white text-[10px] px-[8px] py-[2px] rounded-[5px] whitespace-nowrap shadow-sm font-semibold tracking-wide'>Most Picked</div>
+                                        )}
+                                        <p className={`font-semibold text-xs lg:text-[15px] ${isSelected ? 'text-red-500' : ''}`}>{tenure.months}</p>
+                                        <h1 className={`font-bold text-[22px] lg:text-[28px] pt-[5px] lg:pt-[10px] flex justify-center items-center lg:flex-col ${isSelected ? 'text-red-500' : ''}`}>{tenure.price}<span className='text-xs text-gray-500 font-normal'>/month</span></h1>
+                                        <Button
+                                            variant={isSelected ? 'destructive' : 'outline'}
+                                            className={`hidden  lg:block mx-auto text-sm font-bold border-[2px] mt-[20px] w-full max-w-[120px] px-[10px]  ${isSelected ? 'border-red-500 text-white' : 'border-red-500 text-red-500 hover:text-red-500'
+                                                }`}
+                                        >
+                                            {isSelected ? 'Selected' : 'Pick Tenure'}
+                                        </Button>
+                                    </div>
+                                );
+                            })}
                         </div>
                         <div className='flex lg:hidden w-full mt-[20px] items-center'>
                             <Button variant='destructive' className='flex-1 rounded-none rounded-l-[5px] font-bold border border-[#ED1F28] text-lg py-[25px] hover:bg-red-600 bg-[#ED1F28]'>Rent Now</Button>
@@ -310,74 +312,7 @@ const Pageview = () => {
             <div>
                 <h3 className='text-2xl font-extrabold text-[#2B5CAB] mt-[20px] pl-[5px] lg:pl-0'>People also Rented</h3>
                 <div className=' grid grid-cols-2 sm:flex gap-[20px] sm:pr-[40px] mx-[25px] pt-[30px] pb-[60px]'>
-                    <Card className="relative mr-[40px] mx-auto w-full max-w-sm pt-0 border-none shadow-none hover:border hover:border-gray-200 hover:shadow-md">
-                        <img
-                            src="/card1.png"
-                            alt="Front Load Washing Machine"
-                            className="relative z-20 aspect-video h-[135px] md:h-[263px] rounded-xl w-full object-cover"
-                        />
-                        <CardHeader className="px-1 pt-3">
-                            <Badge variant="secondary" className="w-fit  text-[#ed1f28] font-bold  hover:text-red-500 rounded-md px-2 py-0.5 text-[7.2px] md:text-sm font-semibold mb-1 bg-blue-50">
-                                Newly Added
-                            </Badge>
-                            <CardTitle className="text-[10px] md:text-lg font-bold">Front Load Washing Machine (6kg)</CardTitle>
-                            <div className="flex items-baseline gap-1">
-                                <span className="text-sm md:text-xl font-extrabold">₹650</span>
-                                <span className="text-gray-500 text-[10px] md:text-base font-medium">/month</span>
-                            </div>
-                        </CardHeader>
-                    </Card>
-                    <Card className="relative mr-[40px] mx-auto w-full max-w-sm pt-0 border-none shadow-none hover:border hover:border-gray-200 hover:shadow-md">
-                        <img
-                            src="/card2.png"
-                            alt="Front Load Washing Machine"
-                            className="relative z-20 aspect-video h-[135px] md:h-[263px] rounded-xl w-full object-cover"
-                        />
-                        <CardHeader className="px-1 pt-3">
-                            <Badge variant="destructive" className="w-fit bg-[#ed1f28] text-white hover:bg-red-50 hover:text-red-500 rounded-md px-2 py-0.5 text-[7.2px] md:text-sm font-bold mb-1">
-                                Limited time offer
-                            </Badge>
-                            <CardTitle className="text-[10px] md:text-lg font-bold"> Double Door Fridge (240L)</CardTitle>
-                            <div className="flex items-baseline gap-1">
-                                <span className="text-sm md:text-xl font-extrabold">₹650</span>
-                                <span className="text-gray-500 text-[10px] md:text-base font-medium">/month</span>
-                            </div>
-                        </CardHeader>
-                    </Card>
-                    <Card className="relative mr-[40px] mx-auto w-full max-w-sm pt-0 border-none shadow-none hover:border hover:border-gray-200 hover:shadow-md">
-                        <img
-                            src="/card3.png"
-                            alt="Front Load Washing Machine"
-                            className="relative z-20 aspect-video h-[135px] md:h-[263px] rounded-xl w-full object-cover"
-                        />
-                        <CardHeader className="px-1 pt-3">
-                            <Badge variant="secondary" className="w-fit bg-blue-50 text-[#ed1f28]  hover:text-red-500 rounded-md px-2 py-0.5 text-[7.2px] md:text-sm font-semibold mb-1">
-                                Newly Added
-                            </Badge>
-                            <CardTitle className="text-[10px] md:text-lg font-bold">56'' LED TV</CardTitle>
-                            <div className="flex items-baseline gap-1">
-                                <span className="text-sm md:text-xl font-extrabold">₹650</span>
-                                <span className="text-gray-500 text-[10px] md:text-base font-medium">/month</span>
-                            </div>
-                        </CardHeader>
-                    </Card>
-                    <Card className="relative mr-[40px] mx-auto w-full max-w-sm pt-0 border-none shadow-none hover:border hover:border-gray-200 hover:shadow-md">
-                        <img
-                            src="/card1.png"
-                            alt="Front Load Washing Machine"
-                            className="relative z-20 aspect-video h-[135px] md:h-[263px] rounded-xl w-full object-cover"
-                        />
-                        <CardHeader className="px-1 pt-3">
-                            <Badge variant="destructive" className="w-fit bg-[#ed1f28] text-white hover:bg-red-50 hover:text-red-500 rounded-md px-2 py-0.5 text-[7.2px] md:text-sm font-bold mb-1">
-                                Limited time offer
-                            </Badge>
-                            <CardTitle className="text-[10px] md:text-lg font-bold">Double Door Fridge (240L)</CardTitle>
-                            <div className="flex items-baseline gap-1">
-                                <span className="text-sm md:text-xl font-extrabold">₹650</span>
-                                <span className="text-gray-500 text-[10px] md:text-base font-medium">/month</span>
-                            </div>
-                        </CardHeader>
-                    </Card>
+                    <Cards />
                 </div>
             </div>
         </div >

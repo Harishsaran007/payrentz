@@ -1,4 +1,5 @@
-import React from 'react'
+'use client'
+import React, { useState } from 'react'
 import { Menu, Search } from 'lucide-react'
 import {
   Dialog,
@@ -25,120 +26,66 @@ import Link from 'next/link'
 
 
 const Navbar = () => {
+  const [pinInput, setPinInput] = useState('');
+  const [pinError, setPinError] = useState('');
+  const [selectedCity, setSelectedCity] = useState('Chennai');
+  const [selectedPin, setSelectedPin] = useState('600001');
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [mobileDialogOpen, setMobileDialogOpen] = useState(false);
+
+  const cityPinMap = {
+    'Chennai': '600001',
+    'Coimbatore': '641035',
+    'Bengaluru': '560017',
+    'Hosur': '635109'
+  };
+
+  const handlePinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/\D/g, '').slice(0, 6);
+    setPinInput(value);
+    setPinError('');
+  };
+
+  const handleProceed = (isMobile: boolean) => {
+    if (pinInput.length === 6) {
+      if (Object.values(cityPinMap).includes(pinInput)) {
+        const cityObj = Object.entries(cityPinMap).find(([_, pin]) => pin === pinInput);
+        if (cityObj) {
+          setSelectedCity(cityObj[0]);
+          setSelectedPin(cityObj[1]);
+          setPinInput('');
+          if (isMobile) setMobileDialogOpen(false);
+          else setDialogOpen(false);
+        }
+      } else {
+        setPinError('Currently not serviced');
+      }
+    }
+  };
+
+  const handleCitySelect = (city: string, isMobile: boolean) => {
+    setSelectedCity(city);
+    setSelectedPin(cityPinMap[city as keyof typeof cityPinMap]);
+    if (isMobile) setMobileDialogOpen(false);
+    else setDialogOpen(false);
+  };
+
   return (
     <div className='w-full mx-auto'>
       <div className="hidden xl:block">
         <div className='flex justify-between py-[13px] h-[59px] pr-[60px] '>
           <div className='flex items-center pl-[60px]'>
-            {/* <div className="block xl:hidden mr-4">
-              <Sheet>
-                <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon" className="p-0 hover:bg-transparent">
-                    <Menu className="w-6 h-6 text-black" />
-                  </Button>
-                </SheetTrigger>
-                <SheetContent side="left" className="w-[300px] sm:w-[540px]">
-                  <SheetHeader>
-                    <SheetTitle className="text-left"><img className="max-w-[200px]" src="payrentz-logo.5c7f17d4.svg" alt="logo" /></SheetTitle>
-                    <SheetDescription className="hidden">
-                      Navigation Menu
-                    </SheetDescription>
-                  </SheetHeader>
-                  <div className="flex flex-col gap-6 mt-6 ml-[20px]">
-                    <div className="border-b pb-4 ">
-                      <p className="font-semibold text-sm text-gray-500 mb-2">Delivery Location</p>
-                      <Dialog>
-                        <DialogTrigger className='flex flex-row items-center w-full' >
-                          <img src='location.8b71f906.svg' className="w-5 h-5" />
-                          <div className='text-left pl-2'>
-                            <p className='text-sm font-semibold text-gray-800'>Chennai</p>
-                            <p className='text-xs text-gray-500'>600001</p>
-                          </div>
-                        </DialogTrigger>
-                        <DialogContent className='w-[1153px] sm:max-w-[1153px] max-w-[95vw] h-[450px] p-0 overflow-hidden rounded-[10px]'>
-                          <div className='grid grid-cols-1 md:grid-cols-2 h-full'>
-                            <div className='flex items-center justify-center hidden md:flex'>
-                              <img src="dialogimg.png" alt="Location Illustration" className="max-w-full h-auto object-contain" />
-                            </div>
-
-                            <div className='pr-8 flex flex-col justify-center text-center md:text-left p-6 md:p-0'>
-                              <DialogHeader>
-                                <DialogTitle className='text-[#ED1F28] text-2xl font-bold  text-center md:text-left mb-[20px]'>Choose your location</DialogTitle>
-                                <DialogDescription className='hidden'>Select your delivery location</DialogDescription>
-                              </DialogHeader>
-
-                              <div className='space-y-6'>
-
-                                <div>
-                                  <h3 className='font-bold text-gray-800 text-lg mb-2'>Enter PIN code</h3>
-                                  <div className='flex gap-2'>
-                                    <Input type='text' placeholder='******' className='flex-1' />
-                                    <Button className='bg-[#ED1F28] hover:bg-[#F87171] font-bold text-lg text-white px-6'>Proceed</Button>
-                                  </div>
-                                  <label className='text-red-500 pt-[10px] text-xs underline  '>Detect my location</label>
-                                </div>
-
-                                <hr />
-
-                                <div>
-                                  <h3 className='font-bold text-gray-800 mb-4 text-lg'>Pick your City</h3>
-                                  <div className='flex gap-4 overflow-x-auto pb-4'>
-                                    <div className='flex flex-col items-center gap-2 cursor-pointer group min-w-[70px]'>
-                                      <div className='w-16 h-16 rounded-full border border-gray-300 overflow-hidden'>
-                                        <img src='chennai.svg' className='w-full h-full object-cover' alt="Chennai" />
-                                      </div>
-                                      <span className='text-xs font-medium  text-gray-600 group-hover:text-[#FF3F3F]'>Chennai</span>
-                                    </div>
-                                    <div className='flex flex-col items-center gap-2 cursor-pointer group min-w-[70px]'>
-                                      <div className='w-16 h-16 rounded-full border border-gray-300 overflow-hidden'>
-                                        <img src='coimbatore.svg' className='w-full h-full object-cover' alt="Coimbatore" />
-                                      </div>
-                                      <span className='text-xs font-medium text-gray-600 group-hover:text-[#FF3F3F]'>Coimbatore</span>
-                                    </div>
-                                    <div className='flex flex-col items-center gap-2 cursor-pointer group min-w-[70px]'>
-                                      <div className='w-16 h-16 rounded-full border border-gray-300 overflow-hidden'>
-                                        <img src='banglore.svg' className='w-full h-full object-cover' alt="Bengaluru" />
-                                      </div>
-                                      <span className='text-xs font-medium text-gray-600 group-hover:text-[#FF3F3F]'>Bengaluru</span>
-                                    </div>
-                                    <div className='flex flex-col items-center gap-2 cursor-pointer group min-w-[70px]'>
-                                      <div className='w-16 h-16 rounded-full border border-gray-300 overflow-hidden'>
-                                        <img src='hosur.svg' className='w-full h-full object-cover' alt="Hosur" />
-                                      </div>
-                                      <span className='text-xs font-medium text-gray-600 group-hover:text-[#FF3F3F]'>Hosur</span>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </DialogContent>
-                      </Dialog>
-                    </div>
-
-                    <div className="flex flex-col gap-4">
-                      <a href='/appliances' className='flex items-center font-semibold h-[16px] gap-2'>
-                        <img src='washingmachine.png' className='w-[20px] h-[20px]' />
-                        <p className="text-lg">Appliances</p>
-                      </a>
-                      <a href='' className='flex items-center font-semibold h-[16px] gap-2 mt-2'>
-                        <img src='sofa.png' className='w-[20px] h-[20px]' />
-                        <p className="text-lg">Furniture</p>
-                      </a>
-                      <a href='' className='flex items-center font-semibold h-[16px] gap-2 mt-2'>
-                        <img src='home-appliances.png' className='w-[20px] h-[20px]' />
-                        <p className="text-lg">Packages</p>
-                      </a>
-                    </div>
-                  </div>
-                </SheetContent>
-              </Sheet>
-            </div> */}
             <Link href='/'>
               <img className="max-w-[132px] " src="/payrentz-logo.5c7f17d4.svg" alt="logo" />
             </Link>
-            <Dialog>
-              <DialogTrigger className='flex flex-row ml-[20px]' ><img src='/location.8b71f906.svg' /><div className='text-xs font-semibold text-[13px] pl-2'><p className='text-gray-800'>Chennai</p><p className='text-gray-400'>600001</p></div></DialogTrigger>
+            <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+              <DialogTrigger className='flex flex-row ml-[20px] items-center' >
+                <img src='/location.8b71f906.svg' className='w-6 h-6' />
+                <div className='text-xs font-semibold text-[13px] pl-2 text-left'>
+                  <p className='text-gray-800'>{selectedCity}</p>
+                  <p className='text-gray-400'>{selectedPin}</p>
+                </div>
+              </DialogTrigger>
               <DialogContent className='w-[1153px] sm:max-w-[1153px] max-w-[95vw] h-[450px] p-0 overflow-hidden rounded-[10px]'>
                 <div className='grid grid-cols-1 md:grid-cols-2 h-full'>
                   <div className='flex items-center justify-center'>
@@ -155,11 +102,27 @@ const Navbar = () => {
 
                       <div>
                         <h3 className='font-bold text-gray-800 text-lg mb-2'>Enter PIN code</h3>
-                        <div className='flex gap-2'>
-                          <Input type='text' placeholder='******' className='flex-1' />
-                          <Button className='bg-[#ED1F28] hover:bg-[#F87171] font-bold text-lg text-white px-6'>Proceed</Button>
+                        <div className='flex gap-2 relative'>
+                          <Input
+                            type='text'
+                            placeholder='******'
+                            className={`flex-1 ${pinError ? 'border-red-500' : ''}`}
+                            value={pinInput}
+                            onChange={handlePinChange}
+                          />
+                          <Button
+                            className='bg-[#ED1F28] hover:bg-[#F87171] font-bold text-lg text-white px-6 disabled:opacity-50'
+                            disabled={pinInput.length !== 6}
+                            onClick={() => handleProceed(false)}
+                          >
+                            Proceed
+                          </Button>
                         </div>
-                        <label className='text-red-500 pt-[10px] text-xs underline  '>Detect my location</label>
+                        {pinError ? (
+                          <p className='text-red-500 pt-[10px] text-xs font-medium'>{pinError}</p>
+                        ) : (
+                          <label className='text-red-500 pt-[10px] text-xs underline cursor-pointer'>Detect my location</label>
+                        )}
                       </div>
 
                       <hr />
@@ -167,29 +130,29 @@ const Navbar = () => {
                       <div>
                         <h3 className='font-bold text-gray-800 mb-4 text-lg'>Pick your City</h3>
                         <div className='flex gap-8'>
-                          <div className='flex flex-col items-center gap-2 cursor-pointer group'>
-                            <div className='w-20 h-20 rounded-full border border-gray-300 overflow-hidden'>
+                          <div onClick={() => handleCitySelect('Chennai', false)} className='flex flex-col items-center gap-2 cursor-pointer group'>
+                            <div className={`w-20 h-20 rounded-full border overflow-hidden ${selectedCity === 'Chennai' ? ' border-2 shadow-sm' : 'border-gray-300'}`}>
                               <img src='/chennai.svg' className='w-full h-full object-cover' alt="Chennai" />
                             </div>
-                            <span className='text-xs font-medium  text-gray-600 group-hover:text-[#FF3F3F]'>Chennai</span>
+                            <span className={`text-xs font-medium ${selectedCity === 'Chennai' ? 'text-[#FF3F3F]' : 'text-gray-600 group-hover:text-[#FF3F3F]'}`}>Chennai</span>
                           </div>
-                          <div className='flex flex-col items-center gap-2 cursor-pointer group'>
-                            <div className='w-20 h-20 rounded-full border border-gray-300 overflow-hidden'>
+                          <div onClick={() => handleCitySelect('Coimbatore', false)} className='flex flex-col items-center gap-2 cursor-pointer group'>
+                            <div className={`w-20 h-20 rounded-full border overflow-hidden ${selectedCity === 'Coimbatore' ? 'border-2 shadow-sm' : 'border-gray-300'}`}>
                               <img src='/coimbatore.svg' className='w-full h-full object-cover' alt="Coimbatore" />
                             </div>
-                            <span className='text-xs font-medium text-gray-600 group-hover:text-[#FF3F3F]'>Coimbatore</span>
+                            <span className={`text-xs font-medium ${selectedCity === 'Coimbatore' ? 'text-[#FF3F3F]' : 'text-gray-600 group-hover:text-[#FF3F3F]'}`}>Coimbatore</span>
                           </div>
-                          <div className='flex flex-col items-center gap-2 cursor-pointer group'>
-                            <div className='w-20 h-20 rounded-full border border-gray-300 overflow-hidden'>
+                          <div onClick={() => handleCitySelect('Bengaluru', false)} className='flex flex-col items-center gap-2 cursor-pointer group'>
+                            <div className={`w-20 h-20 rounded-full border overflow-hidden ${selectedCity === 'Bengaluru' ? 'border-2 shadow-sm' : 'border-gray-300'}`}>
                               <img src='/banglore.svg' className='w-full h-full object-cover' alt="Bengaluru" />
                             </div>
-                            <span className='text-xs font-medium text-gray-600 group-hover:text-[#FF3F3F]'>Bengaluru</span>
+                            <span className={`text-xs font-medium ${selectedCity === 'Bengaluru' ? 'text-[#FF3F3F]' : 'text-gray-600 group-hover:text-[#FF3F3F]'}`}>Bengaluru</span>
                           </div>
-                          <div className='flex flex-col items-center gap-2 cursor-pointer group'>
-                            <div className='w-20 h-20 rounded-full border border-gray-300 overflow-hidden'>
+                          <div onClick={() => handleCitySelect('Hosur', false)} className='flex flex-col items-center gap-2 cursor-pointer group'>
+                            <div className={`w-20 h-20 rounded-full border overflow-hidden ${selectedCity === 'Hosur' ? 'border-2 shadow-sm' : 'border-gray-300'}`}>
                               <img src='/hosur.svg' className='w-full h-full object-cover' alt="Hosur" />
                             </div>
-                            <span className='text-xs font-medium text-gray-600 group-hover:text-[#FF3F3F]'>Hosur</span>
+                            <span className={`text-xs font-medium ${selectedCity === 'Hosur' ? 'text-[#FF3F3F]' : 'text-gray-600 group-hover:text-[#FF3F3F]'}`}>Hosur</span>
                           </div>
                         </div>
                       </div>
@@ -245,12 +208,12 @@ const Navbar = () => {
                 <div className="flex flex-col gap-6 mt-6 ml-[20px]">
                   <div className="border-b pb-4 ">
                     <p className="font-semibold text-sm text-gray-500 mb-2">Delivery Location</p>
-                    <Dialog>
+                    <Dialog open={mobileDialogOpen} onOpenChange={setMobileDialogOpen}>
                       <DialogTrigger className='flex flex-row items-center w-full' >
                         <img src='/location.8b71f906.svg' className="w-5 h-5" />
                         <div className='text-left pl-2'>
-                          <p className='text-sm font-semibold text-gray-800'>Chennai</p>
-                          <p className='text-xs text-gray-500'>600001</p>
+                          <p className='text-sm font-semibold text-gray-800'>{selectedCity}</p>
+                          <p className='text-xs text-gray-500'>{selectedPin}</p>
                         </div>
                       </DialogTrigger>
                       <DialogContent className='w-[1153px] sm:max-w-[1153px] max-w-[95vw] h-[450px] p-0 overflow-hidden rounded-[10px]'>
@@ -269,11 +232,29 @@ const Navbar = () => {
 
                               <div>
                                 <h3 className='font-bold text-gray-800 text-lg mb-2'>Enter PIN code</h3>
-                                <div className='flex gap-2'>
-                                  <Input type='text' placeholder='******' className='flex-1' />
-                                  <Button className='bg-[#ED1F28] hover:bg-[#F87171] font-bold text-lg text-white px-6'>Proceed</Button>
+                                <div className='flex gap-2 relative'>
+                                  <Input
+                                    type='text'
+                                    placeholder='******'
+                                    className={`flex-1 ${pinError ? 'border-red-500' : ''}`}
+                                    value={pinInput}
+                                    onChange={handlePinChange}
+                                  />
+                                  <Button
+                                    className='bg-[#ED1F28] hover:bg-[#F87171] font-bold text-lg text-white px-6 disabled:opacity-50'
+                                    disabled={pinInput.length !== 6}
+                                    onClick={() => handleProceed(true)}
+                                  >
+                                    Proceed
+                                  </Button>
                                 </div>
-                                <label className='text-red-500 pt-[10px] text-xs underline  '>Detect my location</label>
+                                {pinError ? (
+                                  <p className='text-red-500 pt-[10px] text-xs font-medium text-left'>{pinError}</p>
+                                ) : (
+                                  <div className='text-left pt-[10px]'>
+                                    <label className='text-red-500 text-xs underline cursor-pointer'>Detect my location</label>
+                                  </div>
+                                )}
                               </div>
 
                               <hr />
@@ -281,29 +262,29 @@ const Navbar = () => {
                               <div>
                                 <h3 className='font-bold text-gray-800 mb-4 text-lg'>Pick your City</h3>
                                 <div className='flex gap-4 overflow-x-auto pb-4'>
-                                  <div className='flex flex-col items-center gap-2 cursor-pointer group min-w-[70px]'>
-                                    <div className='w-16 h-16 rounded-full border border-gray-300 overflow-hidden'>
+                                  <div onClick={() => handleCitySelect('Chennai', true)} className='flex flex-col items-center gap-2 cursor-pointer group min-w-[70px]'>
+                                    <div className={`w-16 h-16 rounded-full border overflow-hidden ${selectedCity === 'Chennai' ? 'border-2 shadow-sm' : 'border-gray-300'}`}>
                                       <img src='/chennai.svg' className='w-full h-full object-cover' alt="Chennai" />
                                     </div>
-                                    <span className='text-xs font-medium  text-gray-600 group-hover:text-[#FF3F3F]'>Chennai</span>
+                                    <span className={`text-xs font-medium ${selectedCity === 'Chennai' ? 'text-[#FF3F3F]' : 'text-gray-600 group-hover:text-[#FF3F3F]'}`}>Chennai</span>
                                   </div>
-                                  <div className='flex flex-col items-center gap-2 cursor-pointer group min-w-[70px]'>
-                                    <div className='w-16 h-16 rounded-full border border-gray-300 overflow-hidden'>
+                                  <div onClick={() => handleCitySelect('Coimbatore', true)} className='flex flex-col items-center gap-2 cursor-pointer group min-w-[70px]'>
+                                    <div className={`w-16 h-16 rounded-full border overflow-hidden ${selectedCity === 'Coimbatore' ? 'border-2 shadow-sm' : 'border-gray-300'}`}>
                                       <img src='/coimbatore.svg' className='w-full h-full object-cover' alt="Coimbatore" />
                                     </div>
-                                    <span className='text-xs font-medium text-gray-600 group-hover:text-[#FF3F3F]'>Coimbatore</span>
+                                    <span className={`text-xs font-medium ${selectedCity === 'Coimbatore' ? 'text-[#FF3F3F]' : 'text-gray-600 group-hover:text-[#FF3F3F]'}`}>Coimbatore</span>
                                   </div>
-                                  <div className='flex flex-col items-center gap-2 cursor-pointer group min-w-[70px]'>
-                                    <div className='w-16 h-16 rounded-full border border-gray-300 overflow-hidden'>
+                                  <div onClick={() => handleCitySelect('Bengaluru', true)} className='flex flex-col items-center gap-2 cursor-pointer group min-w-[70px]'>
+                                    <div className={`w-16 h-16 rounded-full border overflow-hidden ${selectedCity === 'Bengaluru' ? 'border-2 shadow-sm' : 'border-gray-300'}`}>
                                       <img src='/banglore.svg' className='w-full h-full object-cover' alt="Bengaluru" />
                                     </div>
-                                    <span className='text-xs font-medium text-gray-600 group-hover:text-[#FF3F3F]'>Bengaluru</span>
+                                    <span className={`text-xs font-medium ${selectedCity === 'Bengaluru' ? 'text-[#FF3F3F]' : 'text-gray-600 group-hover:text-[#FF3F3F]'}`}>Bengaluru</span>
                                   </div>
-                                  <div className='flex flex-col items-center gap-2 cursor-pointer group min-w-[70px]'>
-                                    <div className='w-16 h-16 rounded-full border border-gray-300 overflow-hidden'>
+                                  <div onClick={() => handleCitySelect('Hosur', true)} className='flex flex-col items-center gap-2 cursor-pointer group min-w-[70px]'>
+                                    <div className={`w-16 h-16 rounded-full border overflow-hidden ${selectedCity === 'Hosur' ? 'border-2 shadow-sm' : 'border-gray-300'}`}>
                                       <img src='/hosur.svg' className='w-full h-full object-cover' alt="Hosur" />
                                     </div>
-                                    <span className='text-xs font-medium text-gray-600 group-hover:text-[#FF3F3F]'>Hosur</span>
+                                    <span className={`text-xs font-medium ${selectedCity === 'Hosur' ? 'text-[#FF3F3F]' : 'text-gray-600 group-hover:text-[#FF3F3F]'}`}>Hosur</span>
                                   </div>
                                 </div>
                               </div>
