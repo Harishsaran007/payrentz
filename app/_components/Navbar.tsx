@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-import { Menu, Search } from 'lucide-react'
+import { Menu, Search, Pencil } from 'lucide-react'
 import {
   Dialog,
   DialogContent,
@@ -22,6 +22,12 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import Link from 'next/link'
+import {
+  NativeSelect,
+  NativeSelectOption,
+} from "@/components/ui/native-select"
+
+
 
 
 
@@ -32,6 +38,14 @@ const Navbar = () => {
   const [selectedPin, setSelectedPin] = useState('600001');
   const [dialogOpen, setDialogOpen] = useState(false);
   const [mobileDialogOpen, setMobileDialogOpen] = useState(false);
+  const [mobileInput, setMobileInput] = useState('');
+  const [mobileError, setMobileError] = useState('');
+
+  const [loginOpenDesktop, setLoginOpenDesktop] = useState(false);
+  const [loginStepDesktop, setLoginStepDesktop] = useState<'phone' | 'otp' | 'name'>('phone');
+
+  const [loginOpenMobile, setLoginOpenMobile] = useState(false);
+  const [loginStepMobile, setLoginStepMobile] = useState<'phone' | 'otp' | 'name'>('phone');
 
   const cityPinMap = {
     'Chennai': '600001',
@@ -45,6 +59,12 @@ const Navbar = () => {
     setPinInput(value);
     setPinError('');
   };
+
+  const handleMobileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/\D/g, '').slice(0, 10);
+    setMobileInput(value);
+    setMobileError('');
+  }
 
   const handleProceed = (isMobile: boolean) => {
     if (pinInput.length === 6) {
@@ -174,18 +194,116 @@ const Navbar = () => {
                 placeholder="Search"
                 className="w-full h-[40px] pl-3 pr-10 rounded-[5px] border border-gray-400 focus-visible:ring-0 focus-visible:ring-offset-0 text-base"
               />
-              <div className="absolute right-3 top-1/2 -translate-y-1/2">
+              <div className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer">
                 <Search className="w-5 h-5 text-gray-500" />
               </div>
             </div>
             <div className='flex'>
-              <img src="cart.5fa6c9b1.svg" alt='' />
+              <img src="/cart.5fa6c9b1.svg" alt='' />
               <p className='pl-[3px] text-sm font-semibold pl-[8px]'>Cart</p>
             </div>
-            <Button className='bg-red-500'>Login</Button>
+            <Dialog open={loginOpenDesktop} onOpenChange={(open) => {
+              setLoginOpenDesktop(open);
+              if (!open) setLoginStepDesktop('phone');
+            }}>
+              <DialogTrigger asChild>
+                <Button variant='destructive'>Login</Button>
+              </DialogTrigger>
+              <DialogContent className="flex justify-center items-center w-full max-w-[790px] sm:max-w-[790px] h-[462px] rounded-[20px] p-0 overflow-hidden">
+                <img src="/loginimg.png" className='w-[295px] h-[295px]' alt="logoimg" /> 
+                <div className="w-[495px] px-8">
+                  {loginStepDesktop === 'phone' ? (
+                    <>
+                      <DialogHeader>
+                        <DialogTitle className='text-2xl font-bold text-red-600'>Let's get you started!</DialogTitle>
+                        <DialogDescription className="hidden">
+                          Login to your account to get started.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className='mt-[30px] w-full max-w-[350px]'>
+                        <p className='text-[18px] font-semibold text-[#3a3a3a] mb-[15px]'>Enter your mobile number</p>
+                        <div className='flex items-center h-[50px] w-full rounded-[8px] border border-gray-300 bg-white focus-within:border-gray-400 focus-within:ring-1 focus-within:ring-gray-400 transition-colors'>
+                          <NativeSelect className='border-0 shadow-none focus-visible:ring-0 focus-visible:border-0 bg-transparent text-base text-gray-500 font-medium h-[48px] rounded-none pl-[15px]'>
+                            <NativeSelectOption value="india">+91</NativeSelectOption>
+                            <NativeSelectOption value="srilanka">+92</NativeSelectOption>
+                            <NativeSelectOption value="malaysia">+93</NativeSelectOption>
+                            <NativeSelectOption value="singapore">+94</NativeSelectOption>
+                            <NativeSelectOption value="uae">+95</NativeSelectOption>
+                          </NativeSelect>
+                          <div className='h-[28px] w-[1px] bg-gray-300 shrink-0'></div>
+                          <Input
+                            type="text"
+                            placeholder="9876543210"
+                            className='flex-1 border-0 focus-visible:ring-0 focus-visible:ring-offset-0 shadow-none bg-transparent text-base text-gray-800 placeholder:text-gray-300 px-[15px] h-full rounded-none'
+                            maxLength={10}
+                            value={mobileInput}
+                            onChange={handleMobileChange}
+                          />
+                        </div>
+                        <Button variant="destructive" className='mt-[30px] w-full max-w-[160px] h-[50px] text-lg font-bold rounded-[8px]' onClick={() => setLoginStepDesktop('otp')}>Send OTP</Button>
+                      </div>
+                    </>
+                  ) : loginStepDesktop === 'otp' ? (
+                    <>
+                      <DialogHeader>
+                        <DialogTitle className='text-2xl font-bold text-[#ED1F28]'>Verify with OTP</DialogTitle>
+                        <DialogDescription className="text-gray-500 mt-2 text-sm">
+                          We have sent 6 digit OTP on your mobile number for verification.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className='mt-[30px] w-full max-w-[380px]'>
+                        <div className="flex justify-between items-center mb-[15px]">
+                          <p className='text-[18px] font-semibold text-[#3a3a3a]'>Enter OTP</p>
+                          <button onClick={() => setLoginStepDesktop('phone')} className="text-sm text-[#2B5CAB] font-medium flex items-center hover:underline">
+                            Sent to +91 {mobileInput || '9876543210'} <Pencil className="w-3 h-3 ml-1" />
+                          </button>
+                        </div>
+                        <Input
+                          type="text"
+                          placeholder="Enter 6-digit OTP"
+                          className='h-[50px] w-full rounded-[8px] border border-gray-300 focus-visible:ring-1 focus-visible:ring-gray-400 text-base px-[15px]'
+                          maxLength={6}
+                        />
+                        <p className="text-sm text-gray-500 mt-3">Resend OTP in 00:45</p>
+                        <Button variant="destructive" className='mt-[30px] w-full max-w-[160px] h-[50px] text-lg font-bold rounded-[8px]' onClick={() => { setLoginStepDesktop('name'); }}>Submit</Button>
+                      </div>
+                    </>
+                  ):(
+                    <>
+                      <DialogHeader className='mt-[20px]'>
+                        <DialogTitle className='text-2xl font-bold text-red-600'>Almost there!</DialogTitle>
+                        <DialogDescription className="hidden">
+                          Login to your account to get started.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className='mt-[30px] w-full max-w-[350px]'>
+                        <p className='text-[18px] font-semibold text-[#3a3a3a] mb-[15px]'>Enter your name<span className='text-red-600'>*</span></p>
+                        <div className='flex items-center h-[50px] w-full rounded-[8px] border border-gray-300 bg-white focus-within:border-gray-400 focus-within:ring-1 focus-within:ring-gray-400 transition-colors'>
+                          <Input
+                            type="text"
+                            placeholder="John Doe"
+                            required
+                            className='flex-1 border-0 focus-visible:ring-0 focus-visible:ring-offset-0 shadow-none bg-transparent text-base text-gray-800 placeholder:text-gray-300 px-[15px] h-full rounded-none'
+                          />
+                        </div>
+                        <p className='text-[18px] font-semibold text-[#3a3a3a] mb-[15px] mt-[20px]'>Enter your email<span className='text-red-600'>*</span></p>
+                        <div className='flex items-center h-[50px] w-full rounded-[8px] border border-gray-300 bg-white focus-within:border-gray-400 focus-within:ring-1 focus-within:ring-gray-400 transition-colors'>
+                          <Input
+                            type="email"
+                            required
+                            placeholder="hello@johndoe.com"
+                            className='flex-1 border-0 focus-visible:ring-0 focus-visible:ring-offset-0 shadow-none bg-transparent text-base text-gray-800 placeholder:text-gray-300 px-[15px] h-full rounded-none'
+                          />
+                        </div>
+                        <Button variant="destructive" className='mt-[30px] w-full max-w-[160px] h-[50px] text-lg font-bold rounded-[8px]' onClick={() => {setLoginOpenDesktop(false); setLoginStepDesktop('phone');}}>Continue</Button>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
-
       </div>
 
 
@@ -315,7 +433,108 @@ const Navbar = () => {
             <img className="max-w-[100px]" src="/payrentz-logo.5c7f17d4.svg" alt="logo" />
           </div>
           <div className="flex items-center gap-4">
-            <Button className="bg-[#ED1F28] hover:bg-[#F87171] text-white font-bold h-8 px-4 rounded">Login</Button>
+            <Dialog open={loginOpenMobile} onOpenChange={(open) => {
+              setLoginOpenMobile(open);
+              if (!open) setLoginStepMobile('phone');
+            }}>
+              <DialogTrigger asChild>
+                <Button variant='destructive'>Login</Button>
+              </DialogTrigger>
+              <DialogContent className="flex flex-col justify-center  pt-[40px] items-center w-full max-w-[390px] sm:max-w-[490px] h-[482px] rounded-[20px] p-0 overflow-hidden">
+                <img src="/loginimg.png" className='w-[140px] h-[140px] mb-2' alt="loginimg" />
+                <div className="w-full px-6">
+                  {loginStepMobile === 'phone' ? (
+                    <>
+                    <div className="pl-[20px] lg:pl-0">
+                      <DialogHeader className="text-left sm:text-left">
+                        <DialogTitle className='text-xl flex justify-center sm:justify-start font-bold text-red-600'>Let's get you started!</DialogTitle>
+                        <DialogDescription className="hidden">
+                          Login to your account to get started.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className='mt-[15px] w-full max-w-[350px] mx-auto sm:mx-0'>
+                        <p className='text-sm font-semibold text-[#3a3a3a] mb-[10px] text-center sm:text-left'>Enter your mobile number</p>
+                        <div className='flex items-center h-[40px] w-full rounded-[8px] border border-gray-300 bg-white focus-within:border-gray-400 focus-within:ring-1 focus-within:ring-gray-400 transition-colors'>
+                          <NativeSelect className='border-0 shadow-none focus-visible:ring-0 focus-visible:border-0 bg-transparent text-sm text-gray-500 font-medium h-[38px] rounded-none pl-[10px]'>
+                            <NativeSelectOption value="india">+91</NativeSelectOption>
+                            <NativeSelectOption value="srilanka">+92</NativeSelectOption>
+                            <NativeSelectOption value="malaysia">+93</NativeSelectOption>
+                            <NativeSelectOption value="singapore">+94</NativeSelectOption>
+                            <NativeSelectOption value="uae">+95</NativeSelectOption>
+                          </NativeSelect>
+                          <div className='h-[28px] w-[1px] bg-gray-300 shrink-0'></div>
+                          <Input
+                            type="text"
+                            placeholder="9876543210"
+                            className='flex-1 border-0 focus-visible:ring-0 focus-visible:ring-offset-0 shadow-none bg-transparent text-sm text-gray-800 placeholder:text-gray-300 px-[15px] h-full rounded-none'
+                            maxLength={10}
+                            value={mobileInput}
+                            onChange={handleMobileChange}
+                          />
+                        </div>
+                        <Button variant="destructive" className='mt-[20px] w-full max-w-[140px] h-[40px] text-base font-bold rounded-[8px] mx-auto sm:mx-0 block' onClick={() => setLoginStepMobile('otp')}>Send OTP</Button>
+                      </div>
+                      </div>
+                    </>
+                  ) : loginStepMobile === 'otp' ?(
+                    <>
+                      <DialogHeader className="text-center sm:text-left">
+                        <DialogTitle className='text-xl flex justify-center sm:justify-start font-bold text-[#ED1F28]'>Verify with OTP</DialogTitle>
+                        <DialogDescription className="text-gray-500 mt-2 text-sm text-center sm:text-left">
+                          We have sent 6 digit OTP on your mobile number for verification.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className='mt-[20px] w-full max-w-[350px] mx-auto sm:mx-0'>
+                        <div className="flex flex-col sm:flex-row justify-between sm:items-center mb-[10px] gap-1 sm:gap-0">
+                          <p className='text-base font-semibold text-[#3a3a3a] text-center sm:text-left'>Enter OTP</p>
+                          <button onClick={() => setLoginStepMobile('phone')} className="text-xs text-[#2B5CAB] font-medium flex items-center justify-center sm:justify-start hover:underline">
+                            Sent to +91 {mobileInput || '9876543210'} <Pencil className="w-3 h-3 ml-1" />
+                          </button>
+                        </div>
+                        <Input
+                          type="text"
+                          placeholder="Enter 6-digit OTP"
+                          className='h-[40px] w-full rounded-[8px] border border-gray-300 focus-visible:ring-1 focus-visible:ring-gray-400 text-sm px-[15px]'
+                          maxLength={6}
+                        />
+                        <p className="text-xs text-gray-500 mt-2 text-center sm:text-left">Resend OTP in 00:45</p>
+                        <Button variant="destructive" className='mt-[20px] w-full max-w-[140px] h-[40px] text-base font-bold rounded-[8px] mx-auto sm:mx-0 block' onClick={() => { setLoginStepMobile('name'); }}>Submit</Button>
+                      </div>
+                    </>
+                  ) :(
+                    <>
+                      <DialogHeader className='mt-[10px]'>
+                        <DialogTitle className='text-xl font-bold text-red-600'>Almost there!</DialogTitle>
+                        <DialogDescription className="hidden">
+                          Login to your account to get started.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className='mt-[20px] w-full max-w-[350px]'>
+                        <p className='text-sm font-semibold text-[#3a3a3a] mb-[10px]'>Enter your name<span className='text-red-600'>*</span></p>
+                        <div className='flex items-center h-[40px] w-full rounded-[8px] border border-gray-300 bg-white focus-within:border-gray-400 focus-within:ring-1 focus-within:ring-gray-400 transition-colors'>
+                          <Input
+                            type="text"
+                            placeholder="John Doe"
+                            required
+                            className='flex-1 border-0 focus-visible:ring-0 focus-visible:ring-offset-0 shadow-none bg-transparent text-sm text-gray-800 placeholder:text-gray-300 px-[15px] h-full rounded-none'
+                          />
+                        </div>
+                        <p className='text-sm font-semibold text-[#3a3a3a] mb-[10px] mt-[20px]'>Enter your email<span className='text-red-600'>*</span></p>
+                        <div className='flex items-center h-[40px] w-full rounded-[8px] border border-gray-300 bg-white focus-within:border-gray-400 focus-within:ring-1 focus-within:ring-gray-400 transition-colors'>
+                          <Input
+                            type="email"
+                            required
+                            placeholder="hello@johndoe.com"
+                            className='flex-1 border-0 focus-visible:ring-0 focus-visible:ring-offset-0 shadow-none bg-transparent text-sm text-gray-800 placeholder:text-gray-300 px-[15px] h-full rounded-none'
+                          />
+                        </div>
+                        <Button variant="destructive" className='mt-[15px] w-full max-w-[120px] h-[40px] text-base font-bold rounded-[8px]' onClick={() => {setLoginOpenMobile(false);  setLoginStepMobile('phone');}}>Continue</Button>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </DialogContent>
+            </Dialog>
             <img src="/cart.5fa6c9b1.svg" alt="cart" className="w-6 h-6" />
           </div>
         </div>
