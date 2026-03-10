@@ -1,0 +1,6 @@
+﻿.next/types/validator.ts(51,39): error TS2307: Cannot find module '../../app/appliances/ac-on-rent/page.js' or its corresponding type declarations.
+.next/types/validator.ts(60,39): error TS2307: Cannot find module '../../app/appliances/laptop-on-rent/page.js' or its corresponding type declarations.
+.next/types/validator.ts(69,39): error TS2307: Cannot find module '../../app/appliances/laptop-view/page.js' or its corresponding type declarations.
+.next/types/validator.ts(78,39): error TS2307: Cannot find module '../../app/appliances/page.js' or its corresponding type declarations.
+.next/types/validator.ts(87,39): error TS2307: Cannot find module '../../app/appliances/refrigerator-on-rent/page.js' or its corresponding type declarations.
+.next/types/validator.ts(96,39): error TS2307: Cannot find module '../../app/appliances/tv-on-rent/page.js' or its corresponding type declarations.
